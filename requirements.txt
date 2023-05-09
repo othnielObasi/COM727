@@ -1,7 +1,7 @@
 openai
 pandas
 regex
-random
+random==0.0.1
 csv
 connect
 chartie
