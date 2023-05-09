@@ -1,1 +1,1 @@
-web: gunicorn cookgenie_main:chatbot
+web: gunicorn cookgenie.py:chatbot
