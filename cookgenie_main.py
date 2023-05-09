@@ -15,9 +15,12 @@ def main():
 
     name = None
     while name is None:
-        # get user's name and greet user by name
-        print("CooKGenie: " + chatbot.prompt_for_name())
-        name = input("You: ")
+        try:
+            # get user's name and greet user by name
+            print("CooKGenie: " + chatbot.prompt_for_name())
+            name = input("You: ")
+        except EOFError:
+        print("Please enter your name again.")
     print("CooKGenie: Hello, " + name + "!")
 
     while True:
