@@ -15,7 +15,7 @@ chatbot = ChatBot()
 
 @app.route('/')
 def index():
-    return render_template(os.path.join('com272', 'index.html'))
+    return render_template(os.path.join('COM727', 'index.html'))
 
 @app.route('/chat', methods=['POST'])
 def chat():
