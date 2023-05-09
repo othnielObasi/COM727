@@ -1,6 +1,25 @@
-body{
-  padding: 25px;
-}
-.title {
-	color: #5C6AC4;
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CooKGenie Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="chat-window">
+      <div class="chat-header">
+        <div class="chat-logo">CooKGenie</div>
+      </div>
+      <div class="chat-body"></div>
+      <div class="chat-footer">
+        <form>
+          <input type="text" id="user-input" placeholder="Type your message..." />
+          <button type="submit" id="send-btn">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
