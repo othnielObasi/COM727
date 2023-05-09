@@ -1,1 +1,1 @@
-worker: python cookgenie_main.py
+web: gunicorn cookgenie_main :app
