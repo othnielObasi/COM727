@@ -20,7 +20,7 @@ def main():
             print("CooKGenie: " + chatbot.prompt_for_name())
             name = input("You: ")
         except EOFError:
-        print("Please enter your name again.")
+            print("Please enter your name again.")
     print("CooKGenie: Hello, " + name + "!")
 
     while True:
