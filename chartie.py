@@ -15,7 +15,7 @@ import connect
 
 class ChatBot:
     def __init__(self):
-        openai_api_key = connect.sky_v()
+        openai_api_key = connect.get_api_key()
         self.gpt3_api_key = openai_api_key
         self.openai_api_key = openai_api_key
         self.prompts = {
