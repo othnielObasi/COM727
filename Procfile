@@ -1,1 +1,1 @@
-web: gunicorn cookgenie.py:chatbot
+web: gunicorn app:app
