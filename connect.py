@@ -5,15 +5,18 @@
 
 
 import os
+import csv
+import os
+os.getcwd()
 
-def sky_v():
-    file_path = os.path.join(os.getcwd(), "root", "giraffe.txt")
-    try:
-        with open(file_path, "r") as f:
-            key = f.read().strip()
-        return key
-    except FileNotFoundError:
-        print(f"Error: file not found at path {file_path}")
-    except Exception as e:
-        print(f"Error: {str(e)}")
+
+def get_api_key():
+    api_key = os.environ.get('API_KEY')
+    if api_key:
+        return api_key
+    else:
+        with open('api_key.txt') as f:
+            reader = csv.reader(f)
+            api_key = next(reader)[0]
+            return api_key
 
