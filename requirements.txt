@@ -1,6 +1,5 @@
 openai
 pandas
 regex
-csv
 connect
 chartie
