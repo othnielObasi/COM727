@@ -7,14 +7,8 @@
 from flask import Flask, render_template, request
 from chartie import ChatBot
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
-# Instantiate the chatbot object class
-chatbot = ChatBot()
-
-
-
-app = Flask(__name__)
 
 # Instantiate the chatbot object class
 chatbot = ChatBot()
