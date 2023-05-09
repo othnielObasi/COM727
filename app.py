@@ -6,21 +6,22 @@
 
 from flask import Flask, render_template, request
 from chartie import ChatBot
+import os
 
-app = Flask(__name__, static_folder='static')
-
+app = Flask(__name__)
 
 # Instantiate the chatbot object class
 chatbot = ChatBot()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template(os.path.join('com272', 'index.html'))
 
 @app.route('/chat', methods=['POST'])
 def chat():
     # greet user
     response = {'message': 'CooKGenie: ' + chatbot.greetings()}
+    return response
 
     name = None
     while name is None:
