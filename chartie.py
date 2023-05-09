@@ -45,12 +45,14 @@ class ChatBot:
 
     #  prompt the user to enter their first name.
     def prompt_for_name(self):
-        prompts = ["Can I get your first name please?", "May I have your first name?", "What is your first name?", "Your first name please.", "What can I call you?"]
+        prompts = ["Can I get your first name please?", "May I have your first name?", "What is your first name?", 
+                   "Your first name please.", "What can I call you?"]
         return random.choice(prompts)
 
     # prompt for the user to enroll for cooking training.
     def prompt_to_enroll(self):
-        prompts = ["Would you like to enroll for our cooking training?", "Would you want to register for our cooking training?", "Would you want to learn to cook?"]
+        prompts = ["Would you like to enroll for our cooking training?", 
+                   "Would you want to register for our cooking training?", "Would you want to learn to cook?"]
         return random.choice(prompts)
 
     #  prompts the user to indicate whether they need assistance with a recipe, cooking technique or not. 
@@ -104,32 +106,41 @@ class ChatBot:
     
     #returns a list of possible user inputs indicating that they need assistance with cooking techniques.
     def technique_reply(self):
-        reply = ['technique','food technique', 'I want food technique', 'I need food technique', 'give me food technique','food technique', 'technique please']
+        reply = ['technique','food technique', 'I want food technique', 'I need food technique',
+                 'give me food technique','food technique', 'technique please']
         return reply
 
     #returns a list of possible user inputs indicating that they need recipe recommendations.
     def recipe_reply(self):
-        reply =['recipe', 'food recipe', 'I want to get food recipe', 'I need food recipe','give me food recipe','food recipe, please','recipe please']
+        reply =['recipe', 'food recipe', 'I want to get food recipe', 'I want food recipe',
+                'I need food recipe','give me food recipe','food recipe, please','recipe please']
         return reply
 
     # returns a list of possible user inputs indicating that they want to enroll for cooking training.
     def enrol_affirmation(self):
-        reply = ['yes', 'yeah','yea','yah', 'certainly' 'sure', 'i want to register', 'i want to enroll', 'enroll me', 'enrol me','register now','ok', 'okey', 'alright', 'go on', 'yes please', 'yes, please', 'pls', 'yup', 'go', 'go ahead', 'right away'] 
+        reply = ['yes', 'yeah','yea','yah', 'certainly' 'sure',
+                 'i want to register', 'i want to enroll', 'enroll me', 'enrol me',
+                 'register now','ok', 'okey', 'alright', 'go on', 'yes please', 
+                 'yes, please', 'pls', 'yup', 'go', 'go ahead', 'right away'] 
         return reply
 
     # returns a list of possible user inputs indicating that the user does not want to enroll for cooking training.
     def enroll_rejection(self):
-        reply = ['no', 'nope', 'nay', 'i dont', 'later', 'not interested', 'not sure', 'some day', 'not today', 'no please', 'no pls', 'nay nay', 'no, please', 'no, pls', 'not ready', 'not ready now', 'not yet', 'later', 'not now']
+        reply = ['no', 'nope', 'nay', 'i dont', 'later', 'not interested', 'not sure', 'some day',
+                 'not today', 'no please', 'no pls', 'nay nay', 'no, please', 'no, pls', 'not ready', 
+                 'not ready now', 'not yet', 'later', 'not now']
         return reply
     
     #returns a list of possible user inputs indicating that the user does not need assistance with a recipe or cooking techniq
     def help_reply(self):
-        reply = ['no', 'nope', 'nay', 'i dont', 'later','thanks', 'no thanks', 'than you',"nothing else", "thanks for now", "no please", "no pls", "nay nay", "no, please", "no, pls", "later", "not now"]
+        reply = ['no', 'nope', 'nay', 'i dont', 'later','thanks', 'no thanks', 'thank you',"nothing else",
+                 "thanks for now", "no please", "no pls", "nay nay", "no, please", "no, pls", "later", "not now"]
         return reply
 
     #returns a random message to prompt the user to rephrase their input if it's not understood.
     def re_try(self):
-        response = ["I'm sorry, I didn't understand your response. Please try again.", "Your response is not clear to me. can you rephrase it?"]
+        response = ["I'm sorry, I didn't understand your response. Please try again.",
+                    "Your response is not clear to me. can you rephrase it?"]
         return random.choice(response)
        
     #returns a random prompt to check if the user needs any further assistance.
@@ -138,15 +149,16 @@ class ChatBot:
         return random.choice(prompts)
         
         
-    def check_exit(self):
+    def check_exit(self, input_text):
         """
         Checks if the user has entered an exit keyword and returns a boolean value to indicate whether to exit the chatbot or not.
         """
-        exit_keywords = ['exit', 'bye', 'see you later', 'bye bye', 'goodbye']
+        exit_keywords = ['exit', 'bye', 'see you later', 'bye bye', 'goodbye','talk to you later']
         if input_text.lower() in exit_keywords:
             return True
         else:
             return False
+
      
         
     def generate_recipe_response(self, cuisine):
@@ -267,31 +279,86 @@ class ChatBot:
         
         
         while True:
-            question = print("CooKGenie: Is there anything else I can help you with?")
+            print("CooKGenie: What else can I help you with?")
             response = input("You: ").lower()
-            if response in ['yes', 'yup', 'yeah', 'yea','yah', 'sure']:
-                return True
-            elif response in ['thank you', 'thanks', 'many thanks']:
+            if response in ['nothing', 'am good', 'nothng else', "i'm good", "i think i'm good", "i think am good",
+                            "i think í'm ok", "i think am ok"]:
+                print("CooKGenie: Okay then, have a nice day!")
+                break
+                
+            elif response in self.recipe_reply():
+                print("CooKGenie: " + self.prompt_for_cuisine())
+                cuisine_response = input("You: ").lower()
+                print("CooKGenie:", self.generate_recipe_response(cuisine_response))
+                
+            elif response in self.technique_reply():
+                print("CooKGenie: " + self.prompt_for_cuisine())
+                cuisine_response = input("You: ").lower()
+                print("CooKGenie:", self.generate_technique_response(cuisine_response)) 
+                
+            elif response in self.learn_to_cook():
+                print("CooKGenie: Sure!")
+                self.enroll()
+                
+            elif response in self.cookgenie_query():
+                self.cookgenie_identity()
+                
+            elif response in self.origin_query():
+                self.cookgenie_creator()
+                
+            elif response in self.feature_query():
+                print(self.cookgenie_feature()) 
+                
+            elif response in ['thank you', 'thanks', 'many thanks', 'bravo', 'thank a bunch']:
                 print("CooKGenie: You're welcome! I'm always here to help.")
+                
             elif response in ['bye', 'exit', 'that is it for now', 'nothing']:
-                print("CooKGenie: Okay, goodbye! Have a nice day!")
-                return False
-            elif response in ['tell me about yourself', 'who are you?', 'what is your name?', 'explain yourself', 'introduce your self']:
-                print("CooKGenie: I am CooKGenie - a virtual cooking assistant.\nI was created as a course project by a group of 3 Solent Universty students: Othniel, Rudolf and Eze\nI was trained on a dataset of billions of information related to cooking.\nI can provide you with recipes and techniques for cooking different dishes, and I can also help you enroll in cooking training if you're interested in improving your skills.\nAll you have to do is tell me what food recipe or techniques you're looking for, and I will provide you with the information you need.\nThink of it like having a personal cooking coach that you can access anytime, anywhere.\nWhether you're a beginner or an experienced cook, I was designed to make your cooking journey easier and more enjoyable.")
-            elif response in ['who made you?', 'who developed you?', 'who created you?']:
-                print("CooKGenie: I was created as a course project by a group of 3 Solent Universty students: Othniel, Rudolf and Eze.\nI was trained on a dataset of billions of information related to cooking.")
-            elif response in ['what can you do?', 'what are your features?', 'what are your functionalities?']:
-                print("CooKGenie: I can provide you with recipes and techniques for cooking different dishes, and I can also help you enroll in cooking training if you're interested in improving your skills.\nAll you have to do is tell me what food recipe or techniques you're looking for, and I will provide you with the information you need.\nThink of it like having a personal cooking coach that you can access anytime, anywhere.\nWhether you're a beginner or an experienced cook, I was designed to make your cooking journey easier and more enjoyable.")
+                print("CooKGenie: Goodbye!")
+                break
+                
             else:
+                print("CooKGenie: I'm sorry, I didn't quite understand what you said. Can you please try again or ask me something else?")
                 continue
 
 
+    def cookgenie_query(self):
+        query = ['tell me about yourself','who are you', 'who are you?', 'what is your name?', 
+                 'explain yourself', 'introduce your self']
+        return query
 
+    def cookgenie_identity(self):
+         print("CooKGenie:\nI am CooKGenie - a virtual cooking assistant\nI was trained on a dataset of billions of information related to cooking.\nThink of it like having a personal cooking coach that you can access anytime, anywhere.\nWhether you're a beginner or an experienced cook, I was designed to make your cooking journey easier and more enjoyable.")
+
+
+    def origin_query(self):
+        query = ['who made you?','who made you','who created you', 'who developed you?', 'who created you?']
+        return query
+
+    def cookgenie_creator(self):
+        print("CooKGenie: I was created as a course project by a group of 3 Solent Universty students: Othniel Obasi, Rudolf Enyimba and Eze Ochulor.")
+
+
+    def feature_query(self):
+        query = ['what can you do?', 'what are your features?', 'what are your functionalities?',
+                 'what can you offer?', 'How can you help me?', 'tell me what you can do?',
+                 'tell me your features', 'tell me your feature']
+        return query
+
+    def cookgenie_feature(self):
+        print("CooKGenie: I can do the following:")
+        print("- provide recipe recommendations for different dishes.\n- recommend cooking techniques for different dishes.\n- help users enroll in cooking training to improve their skills\n")
+        print("All you have to do is tell me what type of recipe or technique you're looking for, and I will provide you with the information you need. I can make your cooking interesting for people at all level of cooking experience.")
+   
+    def learn_to_cook(self):
+        query = ['I want to register for training', 'I want to learn to cook', 
+                   'I want to enrol for cooking training', 'i want to enrol for traning', 
+                   'cooking training', 'traning registration', 'enrol me for training', 
+                   'register me for cooking training', 'enrol me for cooking traning'
+                  ]
+        return query
 
 
 
 # In[ ]:
-
-
 
 
