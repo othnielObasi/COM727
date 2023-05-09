@@ -3,5 +3,5 @@ pandas
 regex
 random
 csv
-./connect
-./chartie
+connect
+chartie
