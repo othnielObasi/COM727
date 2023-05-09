@@ -1,0 +1,6 @@
+openai
+regex
+random
+csv
+./connect
+./chartie
