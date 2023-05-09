@@ -4,7 +4,7 @@
 # In[ ]:
 
 
-from flask import Flask, render_template, requestfrom flask 
+from flask import Flask, render_template, request
 from chartie import ChatBot
 
 app = Flask(__name__)
