@@ -1,1 +1,1 @@
-web: python cookgenie_main.py
+worker: python cookgenie_main.py
