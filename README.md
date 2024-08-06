@@ -1,5 +1,5 @@
-# COM727
-CooKGenie Chatbot
+# CooKGenie Chatbot
+
 
 The CookGenie Bot is an AI-powered chatbot that assists users in learning to cook by providing recipe and cooking technique recommendations. The bot is built using Python and uses the OpenAI API for natural language processing.
 
